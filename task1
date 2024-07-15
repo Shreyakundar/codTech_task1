@@ -1,0 +1,134 @@
+/*Develop a quiz game that presents multiple choicequestions to the user.
+The game should keep track of the users score and provide feedback based on their answer
+
+*/
+#include<iostream>
+#include<iomanip>
+#include<random>
+#include<ctime>
+using namespace std;
+
+int q_no=1;
+int correct=0;
+int wrong=0;
+bool ask[10]={true,true,true,true,true,true,true,true,true,true};
+
+
+void display_random_qus();
+void display();
+void qus(string qus,string a,string b,string c,string d,char correct_ans);
+void result();
+int main()
+{
+  display();
+  return 0;
+  
+}
+void display()
+{
+  system("cls");
+
+cout<<"Question no:"<<q_no<<"\t\t Correct answer:"<<correct<<"\t\tWrong answer:"<<wrong<<endl<<endl;
+display_random_qus();
+}
+void display_random_qus()
+{
+  srand(time(0));
+  bool is_qus_reamaing=false;
+  for(int i=0;i<10;i++)
+  {
+    if(ask[i])
+    {
+      is_qus_reamaing=true;
+      break;
+    }
+  }
+while(is_qus_reamaing)
+{
+  int no=rand()%10;
+  if(ask[no])
+  {
+    ask[no]=false;
+    switch(no)
+    {
+      case 0 : qus("Which language support the Object Oriented Programming Technique","C language","C++ Language","Cobal language","Fortran Language",'b');
+      break;
+
+      case 1 :qus("The default access specifier for the class member is","public","private","protected",    "None of the above",'b');
+      break;
+
+      case 2: qus("Runtime polymorphism is done using","Function overloading","Virtual classes","Virtual functions",   "Friend function",'b');
+      break;
+
+      case 3: qus("Which features of OOPs gives the concept of reusability","Abstraction","Encapsulation","Inheritance",    "None of the above",'b');
+      break;
+
+      case 4:qus("Which of the following approach is used by C++?","Left-right","Right-left","Bottom-up",    "Top-down",'c');
+      break;
+
+      case 5:qus("Which of the following is not a type of Constructor in C++?","Default constructor","Parameterized constructor","Copy constructor",    "Friend constructor",'d');
+      break;
+
+      case 6:qus("What is meant by a polymorphism in C++?","class having four forms","class having only single form","class having many forms", "class having two forms",'c');
+      break;
+
+      case 7:qus("What is Inheritance in C++?","Overloading of classes","Deriving new classes from existing classes","Classes with same names", "Wrapping of data into a single class",'b');
+      break;
+
+      case 8:qus("Runtime polymorphism is done using.","Function overloading","Virtual classes","Virtual functions", "Friend function",'c');
+      break;
+
+      case 9:qus("Which of the following is the correct operator to compare two variables?",":=","=","equal", "==",'d');
+      break;
+      
+      case 10:qus("What is the only function all C++ programs must contain?","start()","system()","main()", "program()",'c');
+      break;
+
+    }
+  }
+}
+result();
+}
+void result()
+{
+  system("cls");
+
+cout<<"Total Question :"<<q_no<<endl;
+cout<<"Correct answer:"<<correct<<endl;
+cout<<"Wrong answer:"<<wrong<<endl<<endl;
+if(correct>wrong)
+{
+  cout<<"Result: PASS"<<endl;
+}
+else if(correct<wrong)
+{
+  cout<<"Result: FAIL"<<endl;
+}
+else
+{
+  cout<<"Result: Tie"<<endl;
+}
+}
+void qus(string qus,string a,string b,string c,string d,char correct_ans)
+{
+  cout<<qus<<endl;
+  cout<<"A.\t"<<a<<endl;
+  cout<<"B.\t"<<b<<endl;
+  cout<<"C.\t"<<c<<endl;
+  cout<<"D.\t"<<d<<endl;
+  char ans;
+  cout<<"enter you answer:";
+  cin>>ans;
+  if(ans==correct_ans)
+  {
+    correct++;
+
+  }
+  else
+  {
+    wrong++;
+    
+  }
+  q_no++;
+  display();
+}
